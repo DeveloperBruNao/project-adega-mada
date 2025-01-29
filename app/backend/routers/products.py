@@ -72,3 +72,26 @@ def atualizar_produto(produto_id: int, produto_atualizado: Produto):
     conexao.close()
 
     return {"message": "Produto atualizado com sucesso", "produto": produto_atualizado}
+
+@router.delete("/{produto_id}")
+def deletar_produto(produto_id: int):
+    """
+    Remove um produto do banco de dados pelo ID.
+    """
+    conexao = sqlite3.connect(DB_NAME)
+    cursor = conexao.cursor()
+
+    # Verifica se o produto existe
+    cursor.execute("SELECT * FROM produtos WHERE id = ?", (produto_id,))
+    produto_existente = cursor.fetchone()
+
+    if not produto_existente:
+        conexao.close()
+        raise HTTPException(status_code=404, detail="Produto não encontrado")
+
+    # Remove o produto
+    cursor.execute("DELETE FROM produtos WHERE id = ?", (produto_id,))
+    conexao.commit()
+    conexao.close()
+
+    return {"message": "Produto removido com sucesso"}
