@@ -8,6 +8,26 @@ router = APIRouter()
 # Lista de produtos simulando um banco de dados
 produtos = []  # Temporário, caso queira ainda usar a lista em memória
 
+@router.post("/")
+def criar_produto(produto: Produto):
+    """
+    Cadastra um novo produto no banco de dados.
+    """
+    conexao = sqlite3.connect(DB_NAME)
+    cursor = conexao.cursor()
+
+    cursor.execute('''
+        INSERT INTO produtos (nome, descricao, preco, estoque)
+        VALUES (?, ?, ?, ?)
+    ''', (produto.nome, produto.descricao, produto.preco, produto.estoque))
+
+    conexao.commit()
+    produto_id = cursor.lastrowid  # Obtém o ID gerado automaticamente pelo banco
+    conexao.close()
+
+    return {"message": "Produto cadastrado com sucesso!", "id": produto_id}
+
+
 @router.get("/")
 def listar_produtos():
     """
