@@ -1,37 +1,199 @@
+/* Cores principais */
+:root {
+    --cor-principal: #003366; /* Azul escuro */
+    --cor-secundaria: #ffd700; /* Amarelo dourado */
+    --cor-fundo: #ffffff; /* Branco */
+    --cor-texto: #003366; /* Azul escuro para texto */
+    --cor-hover: #00509E; /* Azul mais claro para hover */
+}
+
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
 }
 
 header {
-    background: #333;
-    color: #fff;
-    text-align: center;
-    padding: 1rem;
-}
-
-.container {
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 20px;
-    background: white;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-h1, h2 {
-    color: #333;
-}
-
-button {
-    background-color: #28a745;
+    background-color: var(--cor-principal);
     color: white;
+    padding: 20px;
+    text-align: center;
+    font-size: 1.5em;
+}
+
+header .site-logo {
+    width: 150px; /* Ajustando o tamanho da logo */
+    height: auto;
+}
+
+/* Navbar Tradicional */
+.navbar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    background-color: var(--cor-principal);
+}
+
+.navbar ul li {
+    margin: 0 20px;
+}
+
+.navbar ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 1.2em;
+    transition: color 0.3s ease;
+}
+
+.navbar ul li a:hover {
+    color: var(--cor-secundaria);
+}
+
+/* Hamburger Menu */
+.hamburger-menu {
+    display: none;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+}
+
+.hamburger-icon {
+    font-size: 30px;
+    background: none;
     border: none;
-    padding: 10px 15px;
+    color: white;
     cursor: pointer;
 }
 
-button:hover {
-    background-color: #218838;
+.hamburger-list {
+    display: none;
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    background-color: var(--cor-principal);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.hamburger-list ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.hamburger-list ul li {
+    padding: 10px 20px;
+}
+
+.hamburger-list ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 1.2em;
+    transition: color 0.3s ease;
+}
+
+.hamburger-list ul li a:hover {
+    color: var(--cor-secundaria);
+}
+
+/* Produtos mais vendidos estilizados */
+#produtos, #promocoes-lista, #avaliacoes-lista {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+.produto-item, .promocao-item, .avaliacao-item {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Map buttons */
+.map-buttons {
+    margin-bottom: 20px;
+}
+
+.maps-button, .whatsapp-button {
+    display: inline-block;
+    padding: 10px;
+    background-color: #25D366;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 10px;
+    font-size: 1.2em;
+}
+
+.maps-button img, .whatsapp-button img {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+}
+
+.maps-button:hover, .whatsapp-button:hover {
+    background-color: #128C7E;
+    transition: background-color 0.3s ease;
+}
+
+/* Map container */
+.map-container iframe {
+    border-radius: 10px;
+}
+
+/* Horários */
+.horarios-info p {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: var(--cor-principal);
+}
+
+.horarios-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.horarios-list li {
+    font-size: 1.1em;
+    margin: 8px 0;
+}
+
+/* Ajustes nas imagens para evitar carregamento excessivo */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Responsividade */
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 1.2em;
+    }
+    header .site-logo {
+        width: 120px;
+    }
+    .maps-button, .whatsapp-button {
+        font-size: 1em;
+        padding: 8px;
+    }
+    
+    /* Ajuste para mostrar o menu hamburger */
+    .hamburger-menu {
+        display: block;
+    }
+    
+    /* Ajuste para a navbar tradicional em telas menores */
+    .navbar ul {
+        display: none;
+    }
+    
+    .hamburger-list {
+        display: block;
+    }
 }
